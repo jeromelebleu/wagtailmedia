@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
@@ -5,7 +6,6 @@ from wagtail import VERSION as WAGTAIL_VERSION
 from wagtail.admin.modal_workflow import render_modal_workflow
 from wagtail.admin.utils import PermissionPolicyChecker
 from wagtail.core.models import Collection
-from wagtail.utils.pagination import paginate
 
 from wagtailmedia.models import get_media_model
 from wagtailmedia.permissions import permission_policy
@@ -56,7 +56,8 @@ def chooser(request):
             is_searching = False
 
         # Pagination
-        paginator, media_files = paginate(request, media_files, per_page=10)
+        paginator = Paginator(media_files, per_page=10)
+        media_files = paginator.get_page(request.GET.get('p'))
 
         return render(request, "wagtailmedia/chooser/results.html", {
             'media_files': media_files,
@@ -71,7 +72,8 @@ def chooser(request):
             collections = None
 
         media_files = Media.objects.order_by('-created_at')
-        paginator, media_files = paginate(request, media_files, per_page=10)
+        paginator = Paginator(media_files, per_page=10)
+        media_files = paginator.get_page(request.GET.get('p'))
 
     return render_modal_workflow(request, 'wagtailmedia/chooser/chooser.html', None, {
         'media_files': media_files,
