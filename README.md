@@ -5,7 +5,11 @@ but for audio and video files.
 
 ## Compatibility
 
-`wagtailmedia` is compatible with Wagtail 2.2 and above. For compatibility with Wagtail 2.1 and 2.0, use the [v0.2.0 release](https://pypi.org/project/wagtailmedia/0.2.0/).
+`wagtailmedia` is compatible with Wagtail 2.5 and above.
+
+For compatibility with Wagtail 2.2 to 2.4, use the [v0.3.1 release](https://pypi.org/project/wagtailmedia/0.3.1/).
+
+For compatibility with Wagtail 2.1 and 2.0, use the [v0.2.0 release](https://pypi.org/project/wagtailmedia/0.2.0/).
 
 ## How to install
 

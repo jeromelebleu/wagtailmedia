@@ -2,18 +2,13 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from wagtail import VERSION as WAGTAIL_VERSION
+from wagtail.admin.forms.search import SearchForm
 from wagtail.admin.modal_workflow import render_modal_workflow
 from wagtail.admin.utils import PermissionPolicyChecker
 from wagtail.core.models import Collection
 
 from wagtailmedia.models import get_media_model
 from wagtailmedia.permissions import permission_policy
-
-if WAGTAIL_VERSION < (2, 5):
-    from wagtail.admin.forms import SearchForm
-else:
-    from wagtail.admin.forms.search import SearchForm
 
 permission_checker = PermissionPolicyChecker(permission_policy)
 
